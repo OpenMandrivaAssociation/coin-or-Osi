@@ -5,7 +5,7 @@ Name:		coin-or-%{module}
 
 Summary:	COIN-OR Open Solver Interface Library
 Version:	0.106.2
-Release:	3%{?dist}
+Release:	3.0%{?dist}
 License:	EPL
 URL:		https://projects.coin-or.org/%{module}
 Source0:	http://www.coin-or.org/download/pkgsource/%{module}/%{module}-%{version}.tgz
@@ -56,20 +56,20 @@ This package contains the documentation for %{name}.
 %patch1 -p1
 
 %build
+mkdir bin; pushd bin; ln -sf %{_bindir}/ld.bfd ld; popd; export PATH=$PWD/bin:$PATH
+CFLAGS="%{optflags} -fuse-ld=bfd" CXXFLAGS="%{optflags} -fuse-ld=bfd" \
 %configure2_5x
 make %{?_smp_flags} all doxydoc
 
 %install
+export PATH=$PWD/bin:$PATH
 make install DESTDIR=%{buildroot}
 rm -f %{buildroot}%{_libdir}/*.la
 cp -a doxydoc/html %{buildroot}%{_docdir}/%{name}
 
 %check
+export PATH=$PWD/bin:$PATH
 make test
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %files
 %dir %{_docdir}/%{name}
