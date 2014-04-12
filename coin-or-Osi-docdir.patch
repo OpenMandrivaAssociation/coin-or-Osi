@@ -1,0 +1,21 @@
+diff -up Osi-0.106.2/Makefile.in.orig Osi-0.106.2/Makefile.in
+--- Osi-0.106.2/Makefile.in.orig	2013-11-01 13:18:34.678592587 -0200
++++ Osi-0.106.2/Makefile.in	2013-11-01 13:18:55.667593391 -0200
+@@ -402,7 +402,7 @@ EXTRA_DIST = examples/basic2.cpp example
+ ########################################################################
+ #                  Installation of the addlibs file                    #
+ ########################################################################
+-addlibsdir = $(DESTDIR)$(datadir)/coin/doc/Osi
++addlibsdir = $(DESTDIR)$(datadir)/doc/coin-or-$(PACKAGE_NAME)
+ 
+ ########################################################################
+ #                         Maintainer Stuff                             #
+@@ -412,7 +412,7 @@ CLEANFILES =
+ # Files that are generated and should be cleaned with make distclean
+ DISTCLEANFILES = $(am__append_15) $(VPATH_DISTCLEANFILES)
+ DocFiles = README AUTHORS LICENSE
+-DocInstallDir = $(datadir)/coin/doc/$(PACKAGE_NAME)
++DocInstallDir = $(datadir)/doc/coin-or-$(PACKAGE_NAME)
+ all: all-recursive
+ 
+ .SUFFIXES:
